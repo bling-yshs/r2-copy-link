@@ -3,7 +3,7 @@
 // @namespace   Violentmonkey Scripts
 // @match       https://dash.cloudflare.com/*
 // @grant       none
-// @version     0.0.3
+// @version     0.0.4
 // @author      bling-yshs
 // @description 提供一键复制 Cloudflare R2 的外部地址的操作
 // @license     MIT
@@ -12,7 +12,7 @@
 // @updateURL https://update.greasyfork.org/scripts/501964/%E4%B8%80%E9%94%AE%E5%A4%8D%E5%88%B6%20Cloudflare%20R2%20%E7%9A%84%E5%A4%96%E9%83%A8%E5%9C%B0%E5%9D%80.meta.js
 // ==/UserScript==
 
-// 开源地址：https://github.com/bling-yshs/show-github-repo-size-script，欢迎反馈
+// 开源地址：https://github.com/bling-yshs/r2-copy-link，欢迎反馈
 
 async function main() {
   const domainXpath = '//*[@id="react-app"]/div/div/div/div[1]/main/div/div/dl/div[2]/dd/ul/li/span'
@@ -87,6 +87,8 @@ async function main() {
     const folder = folderElement.textContent.trim().split('/')[1]
     console.log('folder:', folder)
     
+    // url 编码
+    filename = encodeURIComponent(filename)
     console.log('filename:', filename)
     
     const url = `https://${domain}/${folder ? `${folder}/` : ''}${filename}`
